@@ -32,7 +32,7 @@ public class PrincipalView extends JFrame {
 	public PrincipalView() {
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(918, 512);
+		setSize(1150, 512);
 		setResizable(false);
 		getContentPane().setLayout(null);
 		setLocationRelativeTo(null);
@@ -46,25 +46,25 @@ public class PrincipalView extends JFrame {
 
 		backgroundPanel = new JPanel();
 		backgroundPanel.setBackground(new Color(22, 22, 22));
-		backgroundPanel.setBounds(0, 0, 918, 512);
+		backgroundPanel.setBounds(0, 0, 1150, 512);
 		backgroundPanel.setLayout(null);
 		contentPanel.add(backgroundPanel);
 
 		menuPanel = new JPanel();
 		menuPanel.setBackground(new Color(23, 69, 23));
-		menuPanel.setBounds(0, 0, 902, 473);
+		menuPanel.setBounds(0, 0, 1140, 473);
 		menuPanel.setLayout(null);
 		backgroundPanel.add(menuPanel);
 
 		secondMenuPanel = new JPanel();
 		secondMenuPanel.setBackground(new Color(25, 77, 25));
-		secondMenuPanel.setBounds(0, 160, 902, 202);
+		secondMenuPanel.setBounds(0, 160, 1140, 202);
 		menuPanel.add(secondMenuPanel);
 		secondMenuPanel.setLayout(null);
 
 		panel1 = new JPanel();
 		panel1.setBackground(new Color(51, 153, 51));
-		panel1.setBounds(189, 11, 189, 153);
+		panel1.setBounds(333, 11, 189, 153);
 		secondMenuPanel.add(panel1);
 		panel1.setLayout(null);
 
@@ -77,12 +77,12 @@ public class PrincipalView extends JFrame {
 		noFileSelected1 = new JLabel("No file selected");
 		noFileSelected1.setFont(new Font("Roboto Condensed", Font.BOLD, 12));
 		noFileSelected1.setForeground(new Color(255, 255, 255));
-		noFileSelected1.setBounds(189, 175, 179, 14);
+		noFileSelected1.setBounds(333, 175, 179, 14);
 		secondMenuPanel.add(noFileSelected1);
 
 		panel2 = new JPanel();
 		panel2.setBackground(new Color(51, 153, 51));
-		panel2.setBounds(511, 11, 189, 153);
+		panel2.setBounds(655, 11, 189, 153);
 		secondMenuPanel.add(panel2);
 		panel2.setLayout(null);
 
@@ -94,7 +94,7 @@ public class PrincipalView extends JFrame {
 		noFileSelected2 = new JLabel("No file selected");
 		noFileSelected2.setForeground(Color.WHITE);
 		noFileSelected2.setFont(new Font("Roboto Condensed", Font.BOLD, 12));
-		noFileSelected2.setBounds(511, 175, 189, 14);
+		noFileSelected2.setBounds(655, 175, 189, 14);
 		secondMenuPanel.add(noFileSelected2);
 
 		titleLabel = new JLabel("Lexer");
@@ -117,54 +117,54 @@ public class PrincipalView extends JFrame {
 		sourceCodeIcon = new JLabel("");
 		sourceCodeIcon
 				.setIcon(new ImageIcon(PrincipalView.class.getResource("/co/edu/unbosque/view/icons/uploadFile.png")));
-		sourceCodeIcon.setBounds(592, 99, 30, 30);
+		sourceCodeIcon.setBounds(740, 99, 30, 30);
 		sourceCodeIcon.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		menuPanel.add(sourceCodeIcon);
 
 		uploadFileButton = new JLabel("Upload source code");
 		uploadFileButton.setForeground(new Color(255, 255, 255));
 		uploadFileButton.setFont(new Font("Roboto Thin", Font.PLAIN, 14));
-		uploadFileButton.setBounds(546, 129, 121, 20);
+		uploadFileButton.setBounds(694, 129, 121, 20);
 		uploadFileButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		menuPanel.add(uploadFileButton);
 
 		uploadExpressionButton = new JLabel("Upload regular expressions");
 		uploadExpressionButton.setForeground(Color.WHITE);
 		uploadExpressionButton.setFont(new Font("Roboto Thin", Font.PLAIN, 14));
-		uploadExpressionButton.setBounds(200, 129, 174, 20);
+		uploadExpressionButton.setBounds(348, 129, 174, 20);
 		uploadExpressionButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		menuPanel.add(uploadExpressionButton);
 
 		expressionIcon = new JLabel("");
 		expressionIcon.setIcon(
 				new ImageIcon(PrincipalView.class.getResource("/co/edu/unbosque/view/icons/regularExpressions.png")));
-		expressionIcon.setBounds(265, 99, 30, 30);
+		expressionIcon.setBounds(413, 99, 30, 30);
 		expressionIcon.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		menuPanel.add(expressionIcon);
 
 		tokenizeIcon = new JLabel("");
 		tokenizeIcon.setIcon(new ImageIcon(PrincipalView.class.getResource("/co/edu/unbosque/view/icons/start.png")));
-		tokenizeIcon.setBounds(814, 392, 40, 40);
+		tokenizeIcon.setBounds(1066, 403, 40, 40);
 		tokenizeIcon.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		menuPanel.add(tokenizeIcon);
 
 		tokenizeButton = new JLabel("Tokenize");
 		tokenizeButton.setFont(new Font("Roboto Thin", Font.PLAIN, 14));
 		tokenizeButton.setForeground(new Color(255, 255, 255));
-		tokenizeButton.setBounds(805, 431, 73, 20);
+		tokenizeButton.setBounds(1057, 442, 73, 20);
 		tokenizeButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		menuPanel.add(tokenizeButton);
 
 		cancelIcon = new JLabel("");
 		cancelIcon.setIcon(new ImageIcon(PrincipalView.class.getResource("/co/edu/unbosque/view/icons/cancel.png")));
-		cancelIcon.setBounds(748, 393, 40, 40);
+		cancelIcon.setBounds(1000, 404, 40, 40);
 		cancelIcon.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		menuPanel.add(cancelIcon);
 
 		cancelButton = new JLabel("Cancel");
 		cancelButton.setForeground(Color.WHITE);
 		cancelButton.setFont(new Font("Roboto Thin", Font.PLAIN, 14));
-		cancelButton.setBounds(748, 431, 47, 20);
+		cancelButton.setBounds(1000, 442, 47, 20);
 		cancelButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		menuPanel.add(cancelButton);
 
