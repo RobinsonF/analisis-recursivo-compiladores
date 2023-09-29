@@ -4,7 +4,6 @@ import java.util.LinkedList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.swing.JOptionPane;
 
 public class Tokenizer {
 
@@ -21,13 +20,25 @@ public class Tokenizer {
         tokenInfos.add(new TokenInfo(Pattern.compile("^(" + regex + ")"), token));
     }
 
-    public void tokenize(String str) {
+    public LinkedList<Token> tokenize(String str) throws LexerException {
         String s = str.trim();
         int totalLength = s.length();
         tokens.clear();
+        boolean match = false;
+
+        // Intentar coincidir con la cadena completa como un solo token
+        Matcher stringMatcher = Pattern.compile("\"[^\"]*\"").matcher(s);
+        if (stringMatcher.find()) {
+            match = true;
+            String tok = stringMatcher.group().trim();
+            s = stringMatcher.replaceFirst("").trim();
+            tokens.add(new Token(11, tok, totalLength - s.length())); // Tipo 11 para cadenas
+        }
+
+        // Si no coincide con una cadena completa, procesar como antes
         while (!s.equals("")) {
             int remaining = s.length();
-            boolean match = false;
+            match = false;
             for (TokenInfo info : tokenInfos) {
                 Matcher m = info.regex.matcher(s);
                 if (m.find()) {
@@ -39,26 +50,13 @@ public class Tokenizer {
                 }
             }
             if (!match) {
-            	this.showErrorMessage("Unexpected character in input: " + s);
-				throw new LexerException(
-						"Unexpected character in input: " + s);
+                throw new LexerException("Unexpected character in input: " + s.charAt(0));
             }
         }
+        return tokens;
     }
-
+    
     public LinkedList<Token> getTokens() {
         return tokens;
     }
-
-	@Override
-	public String toString() {
-		return "Tokenizer [tokenInfos=" + tokenInfos + ", tokens=" + tokens + "]";
-	}
-	
-	public void showErrorMessage(String message) {
-		JOptionPane.showMessageDialog(null, message, "Error", JOptionPane.ERROR_MESSAGE);
-	}
-    
-    
-
 }

@@ -18,13 +18,13 @@ public class Parser {
 
 		document();
 
-		if (lookahead.token != 0) {
-			throw new ParserException("Unexpected symbol " + lookahead.lexeme + "  found");
+		if (lookahead.getType() != 0) {
+			throw new ParserException("Unexpected symbol " + lookahead.getLexeme() + "  found");
 		}
 	}
 
 	private void nextToken() {
-		System.out.print("Proximo: " + tokens.getFirst().lexeme);
+		System.out.print("Proximo: " + tokens.getFirst().getLexeme());
 
 		tokens.pop();
 		if (tokens.isEmpty()) {
@@ -45,11 +45,11 @@ public class Parser {
 	}
 
 	private void modelName() {
-		if (lookahead.token == 1) {
+		if (lookahead.getType() == 1) {
 			nextToken();
-			if (lookahead.token == 9) {
+			if (lookahead.getType() == 9) {
 				nextToken();
-				if (lookahead.token == 17) {
+				if (lookahead.getType() == 17) {
 					nextToken();
 				}
 			}
@@ -57,9 +57,9 @@ public class Parser {
 	}
 
 	private void modelFamily() {
-		if (lookahead.token == 2) {
+		if (lookahead.getType() == 2) {
 			nextToken();
-			if (lookahead.token == 9) {
+			if (lookahead.getType() == 9) {
 				nextToken();
 				modelFamilyName();
 			}
@@ -67,47 +67,47 @@ public class Parser {
 
 		}
 	}
-	
+
 	private void modelFamilyName() {
-		if (lookahead.token == 26) {
+		if (lookahead.getType() == 26) {
 			nextToken();
-		}else if (lookahead.token == 27) {
+		} else if (lookahead.getType() == 27) {
 			nextToken();
-		} else if (lookahead.token == 28) {
+		} else if (lookahead.getType() == 28) {
 			nextToken();
 		}
 	}
-	
+
 	private void modelType() {
-		if (lookahead.token == 3) {
+		if (lookahead.getType() == 3) {
 			nextToken();
-			if (lookahead.token == 9) {
+			if (lookahead.getType() == 9) {
 				nextToken();
 				modelTypeName();
 			}
 		}
 	}
-	
+
 	private void modelTypeName() {
-		if (lookahead.token == 21) {
+		if (lookahead.getType() == 21) {
 			nextToken();
-		}else if (lookahead.token == 22) {
+		} else if (lookahead.getType() == 22) {
 			nextToken();
-		} else if (lookahead.token == 23) {
+		} else if (lookahead.getType() == 23) {
 			nextToken();
-		}else if (lookahead.token == 24) {
+		} else if (lookahead.getType() == 24) {
 			nextToken();
-		}else if (lookahead.token == 25) {
+		} else if (lookahead.getType() == 25) {
 			nextToken();
 		}
 	}
 
 	private void modelDescription() {
-		if (lookahead.token == 4) {
+		if (lookahead.getType() == 4) {
 			nextToken();
-			if (lookahead.token == 9) {
+			if (lookahead.getType() == 9) {
 				nextToken();
-				if (lookahead.token == 17) {
+				if (lookahead.getType() == 17) {
 					nextToken();
 				}
 			}
@@ -117,12 +117,12 @@ public class Parser {
 	}
 
 	private void inputs() {
-		if (lookahead.token == 5) {
+		if (lookahead.getType() == 5) {
 			nextToken();
-			if (lookahead.token == 11) {
+			if (lookahead.getType() == 11) {
 				nextToken();
 				inputList();
-				if (lookahead.token == 12) {
+				if (lookahead.getType() == 12) {
 					nextToken();
 				}
 			}
@@ -133,253 +133,253 @@ public class Parser {
 		input();
 		a();
 	}
-	
+
 	private void input() {
-		if (lookahead.token == 6) {
+		if (lookahead.getType() == 6) {
 			nextToken();
-			if (lookahead.token == 11) {
+			if (lookahead.getType() == 11) {
 				nextToken();
 				inputName();
 				inputType();
-				if (lookahead.token == 12) {
+				if (lookahead.getType() == 12) {
 					nextToken();
 				}
 			}
 		}
 	}
-	
+
 	private void inputName() {
-		if (lookahead.token == 7) {
+		if (lookahead.getType() == 7) {
 			nextToken();
-			if (lookahead.token == 9) {
+			if (lookahead.getType() == 9) {
 				nextToken();
-				if (lookahead.token == 17) {
+				if (lookahead.getType() == 17) {
 					nextToken();
 				}
 			}
 		}
 	}
-	
+
 	private void inputType() {
-		if (lookahead.token == 8) {
+		if (lookahead.getType() == 8) {
 			nextToken();
-			if (lookahead.token == 9) {
+			if (lookahead.getType() == 9) {
 				nextToken();
 				inputTypeName();
 			}
 		}
 	}
-	
+
 	private void inputTypeName() {
-		if (lookahead.token == 18) {
+		if (lookahead.getType() == 18) {
 			nextToken();
-		}else if (lookahead.token == 19) {
+		} else if (lookahead.getType() == 19) {
 			nextToken();
-		} else if (lookahead.token == 20) {
+		} else if (lookahead.getType() == 20) {
 			nextToken();
 		}
 	}
-	
+
 	private void a() {
-		if (lookahead.token != 0) {
+		if (lookahead.getType() != 0) {
 			input();
 			a();
-		}else {
-			
+		} else {
+
 		}
 	}
-	
+
 	private void outputs() {
-		if (lookahead.token == 13) {
+		if (lookahead.getType() == 13) {
 			nextToken();
-			if (lookahead.token == 11) {
+			if (lookahead.getType() == 11) {
 				nextToken();
 				outputList();
-				if (lookahead.token == 12) {
+				if (lookahead.getType() == 12) {
 					nextToken();
 				}
 			}
 		}
 	}
-	
+
 	private void outputList() {
 		output();
 		b();
 	}
 
 	private void output() {
-		if (lookahead.token == 14) {
+		if (lookahead.getType() == 14) {
 			nextToken();
-			if (lookahead.token == 11) {
+			if (lookahead.getType() == 11) {
 				nextToken();
 				outputName();
 				outputType();
-				if (lookahead.token == 12) {
+				if (lookahead.getType() == 12) {
 					nextToken();
 				}
 			}
 		}
 	}
-	
+
 	private void outputName() {
-		if (lookahead.token == 15) {
+		if (lookahead.getType() == 15) {
 			nextToken();
-			if (lookahead.token == 9) {
+			if (lookahead.getType() == 9) {
 				nextToken();
-				if (lookahead.token == 17) {
+				if (lookahead.getType() == 17) {
 					nextToken();
 				}
 			}
 		}
 	}
-	
+
 	private void outputType() {
-		if (lookahead.token == 16) {
+		if (lookahead.getType() == 16) {
 			nextToken();
-			if (lookahead.token == 9) {
+			if (lookahead.getType() == 9) {
 				nextToken();
 				outputTypeName();
 			}
 		}
 	}
-	
+
 	private void outputTypeName() {
-		if (lookahead.token == 18) {
+		if (lookahead.getType() == 18) {
 			nextToken();
-		}else if (lookahead.token == 19) {
+		} else if (lookahead.getType() == 19) {
 			nextToken();
-		} else if (lookahead.token == 20) {
+		} else if (lookahead.getType() == 20) {
 			nextToken();
 		}
 	}
-	
+
 	private void b() {
-		if (lookahead.token != 0) {
+		if (lookahead.getType() != 0) {
 			output();
 			a();
-		}else {
-			
+		} else {
+
 		}
 	}
-	
+
 	private void model() {
-		if (lookahead.token == 29) {
+		if (lookahead.getType() == 29) {
 			nextToken();
-			if (lookahead.token == 11) {
+			if (lookahead.getType() == 11) {
 				nextToken();
 				layersList();
-				if (lookahead.token == 12) {
+				if (lookahead.getType() == 12) {
 					nextToken();
 				}
 			}
 		}
 	}
-	
+
 	private void layersList() {
 		layers();
 		e();
 	}
-	
+
 	private void e() {
-		if (lookahead.token != 0) {
+		if (lookahead.getType() != 0) {
 			layers();
 			e();
-		}else {
-			
+		} else {
+
 		}
 	}
-	
+
 	private void layers() {
-		if (lookahead.token == 30) {
+		if (lookahead.getType() == 30) {
 			nextToken();
-			if (lookahead.token == 11) {
+			if (lookahead.getType() == 11) {
 				nextToken();
 				layerList();
-				if (lookahead.token == 12) {
+				if (lookahead.getType() == 12) {
 					nextToken();
 				}
 			}
 		}
 	}
-	
+
 	private void layerList() {
 		layer();
 		c();
 	}
-	
+
 	private void layer() {
-		if (lookahead.token == 31) {
+		if (lookahead.getType() == 31) {
 			nextToken();
-			if (lookahead.token == 11) {
+			if (lookahead.getType() == 11) {
 				nextToken();
 				layerName();
 				layerParams();
-				if (lookahead.token == 12) {
+				if (lookahead.getType() == 12) {
 					nextToken();
 				}
 			}
 		}
 	}
-	
+
 	private void layerName() {
-		if (lookahead.token == 32) {
+		if (lookahead.getType() == 32) {
 			nextToken();
-			if (lookahead.token == 9) {
+			if (lookahead.getType() == 9) {
 				nextToken();
-				if (lookahead.token == 17) {
+				if (lookahead.getType() == 17) {
 					nextToken();
 				}
 			}
 		}
 	}
-	
+
 	private void layerParams() {
-		if (lookahead.token == 33) {
+		if (lookahead.getType() == 33) {
 			nextToken();
-			if (lookahead.token == 9) {
+			if (lookahead.getType() == 9) {
 				nextToken();
-				if (lookahead.token == 34) {
+				if (lookahead.getType() == 34) {
 					nextToken();
 					numbers();
-					if (lookahead.token == 35) {
-						nextToken();						
+					if (lookahead.getType() == 35) {
+						nextToken();
 					}
 				}
 			}
 		}
 	}
-	
+
 	private void numbers() {
 		number();
 		d();
 	}
-	
+
 	private void number() {
-		if (lookahead.token == 19) {
-			nextToken();	
-			if (lookahead.token == 10) {
-				nextToken();	
+		if (lookahead.getType() == 19) {
+			nextToken();
+			if (lookahead.getType() == 10) {
+				nextToken();
 			}
-		}else if (lookahead.token == 19){
-			nextToken();	
+		} else if (lookahead.getType() == 19) {
+			nextToken();
 		}
 	}
-	
+
 	private void d() {
-		if (lookahead.token != 0) {
+		if (lookahead.getType() != 0) {
 			number();
 			d();
-		}else {
-			
+		} else {
+
 		}
 	}
-	
+
 	private void c() {
-		if (lookahead.token != 0) {
+		if (lookahead.getType() != 0) {
 			layer();
 			c();
-		}else {
-			
+		} else {
+
 		}
 	}
 }
