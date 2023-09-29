@@ -32,7 +32,7 @@ public class PrincipalView extends JFrame {
 	public PrincipalView() {
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(1150, 512);
+		setSize(1150, 550);
 		setResizable(false);
 		getContentPane().setLayout(null);
 		setLocationRelativeTo(null);
@@ -46,13 +46,13 @@ public class PrincipalView extends JFrame {
 
 		backgroundPanel = new JPanel();
 		backgroundPanel.setBackground(new Color(22, 22, 22));
-		backgroundPanel.setBounds(0, 0, 1150, 512);
+		backgroundPanel.setBounds(0, 0, 1150, 550);
 		backgroundPanel.setLayout(null);
 		contentPanel.add(backgroundPanel);
 
 		menuPanel = new JPanel();
 		menuPanel.setBackground(new Color(23, 69, 23));
-		menuPanel.setBounds(0, 0, 1140, 473);
+		menuPanel.setBounds(0, 0, 1140, 550);
 		menuPanel.setLayout(null);
 		backgroundPanel.add(menuPanel);
 

@@ -28,19 +28,19 @@ public class ShowPanel extends JPanel {
 
 	public ShowPanel() {
 
-		setSize(918, 512);
+		setSize(1150, 550);
 		setLayout(null);
 		setVisible(false);
 
 		backgroundPanel = new JPanel();
 		backgroundPanel.setBackground(new Color(22, 22, 22));
-		backgroundPanel.setBounds(0, 0, 1150, 512);
+		backgroundPanel.setBounds(0, 0, 1150, 550);
 		backgroundPanel.setLayout(null);
 		add(backgroundPanel);
 
 		menuPanel = new JPanel();
 		menuPanel.setBackground(new Color(23, 69, 23));
-		menuPanel.setBounds(0, 0, 1150, 512);
+		menuPanel.setBounds(0, 0, 1150, 550);
 		menuPanel.setLayout(null);
 		backgroundPanel.add(menuPanel);
 
@@ -115,26 +115,26 @@ public class ShowPanel extends JPanel {
 
 		tokenizeAgainIcon = new JLabel("");
 		tokenizeAgainIcon.setIcon(new ImageIcon(ShowPanel.class.getResource("/co/edu/unbosque/view/icons/start.png")));
-		tokenizeAgainIcon.setBounds(438, 138, 40, 40);
+		tokenizeAgainIcon.setBounds(988, 113, 40, 40);
 		tokenizeAgainIcon.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		menuPanel.add(tokenizeAgainIcon);
 
 		tokenizeAgainLabel = new JLabel("Tokenize again");
 		tokenizeAgainLabel.setForeground(Color.WHITE);
 		tokenizeAgainLabel.setFont(new Font("Roboto Thin", Font.PLAIN, 14));
-		tokenizeAgainLabel.setBounds(413, 189, 92, 20);
+		tokenizeAgainLabel.setBounds(963, 164, 92, 20);
 		tokenizeAgainLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		menuPanel.add(tokenizeAgainLabel);
 
 		parserAgainIcon = new JLabel("");
 		parserAgainIcon.setIcon(new ImageIcon(ShowPanel.class.getResource("/co/edu/unbosque/view/icons/start.png")));
-		parserAgainIcon.setBounds(438, 367, 40, 40);
+		parserAgainIcon.setBounds(988, 342, 40, 40);
 		menuPanel.add(parserAgainIcon);
 
 		parserAgainLabel = new JLabel("Parser again");
 		parserAgainLabel.setForeground(Color.WHITE);
 		parserAgainLabel.setFont(new Font("Roboto Thin", Font.PLAIN, 14));
-		parserAgainLabel.setBounds(423, 418, 75, 20);
+		parserAgainLabel.setBounds(973, 393, 75, 20);
 		menuPanel.add(parserAgainLabel);
 
 		parserOutputLabel = new JLabel("Parser output:");

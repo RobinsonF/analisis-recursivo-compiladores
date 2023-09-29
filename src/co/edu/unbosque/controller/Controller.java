@@ -95,7 +95,7 @@ public class Controller {
 				principalView.informationMessages("The files were cancelled");
 			}
 		};
-		
+
 		MouseListener tokenizer = new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -133,8 +133,7 @@ public class Controller {
 										.append("\n");
 							}
 							principalView.getShowPanel().getTokenizerOutPut().setText("");
-							principalView.getShowPanel().getTokenizerOutPut()
-									.append(tokenOutput.toString());
+							principalView.getShowPanel().getTokenizerOutPut().append(tokenOutput.toString());
 
 						} catch (LexerException lexEx) {
 							principalView.getShowPanel().getTokenizerOutPut().setText("");
@@ -158,50 +157,39 @@ public class Controller {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (parametersFileLoaded && sourceCodeFileLoaded) {
+
+					String rulesContent = principalView.getShowPanel().getExpressions().getText();
+					String codeToTokenize = principalView.getShowPanel().getSourceCode().getText();
+
+					Tokenizer tokenizer = new Tokenizer();
+
+					String[] ruleLines = rulesContent.split("\n");
+					for (String ruleLine : ruleLines) {
+						String[] parts = ruleLine.trim().split("\\s+", 2);
+						if (parts.length == 2) {
+							String patternStr = parts[0];
+							int tokenType = Integer.parseInt(parts[1]);
+
+							tokenizer.add(patternStr, tokenType);
+						}
+					}
+
 					try {
-						String parametersContent = new String(Files.readAllBytes(parametersFile.toPath()));
-						principalView.getShowPanel().getExpressions().setText(parametersContent);
+						LinkedList<Token> tokens = tokenizer.tokenize(codeToTokenize);
 
-						String sourceCodeContent = new String(Files.readAllBytes(sourceCodeFile.toPath()));
-						principalView.getShowPanel().getSourceCode().setText(sourceCodeContent);
-
-						String rulesContent = principalView.getShowPanel().getExpressions().getText();
-						String codeToTokenize = principalView.getShowPanel().getSourceCode().getText();
-
-						Tokenizer tokenizer = new Tokenizer();
-
-						String[] ruleLines = rulesContent.split("\n");
-						for (String ruleLine : ruleLines) {
-							String[] parts = ruleLine.trim().split("\\s+", 2);
-							if (parts.length == 2) {
-								String patternStr = parts[0];
-								int tokenType = Integer.parseInt(parts[1]);
-
-								tokenizer.add(patternStr, tokenType);
-							}
+						StringBuilder tokenOutput = new StringBuilder();
+						for (Token token : tokens) {
+							tokenOutput.append("Token: ").append(token.getType()).append(" - Lexeme: ")
+									.append(token.getLexeme()).append(" - Position: ").append(token.getPosition())
+									.append("\n");
 						}
+						principalView.getShowPanel().getTokenizerOutPut().setText("");
+						principalView.getShowPanel().getTokenizerOutPut().append(tokenOutput.toString());
 
-						try {
-							LinkedList<Token> tokens = tokenizer.tokenize(codeToTokenize);
+					} catch (LexerException lexEx) {
+						principalView.getShowPanel().getTokenizerOutPut().setText("");
+						principalView.errorMessages("Tokenization error:\n" + lexEx.getMessage());
 
-							StringBuilder tokenOutput = new StringBuilder();
-							for (Token token : tokens) {
-								tokenOutput.append("Token: ").append(token.getType()).append(" - Lexeme: ")
-										.append(token.getLexeme()).append(" - Position: ").append(token.getPosition())
-										.append("\n");
-							}
-							principalView.getShowPanel().getTokenizerOutPut().setText("");
-							principalView.getShowPanel().getTokenizerOutPut()
-									.append(tokenOutput.toString());
-
-						} catch (LexerException lexEx) {
-							principalView.getShowPanel().getTokenizerOutPut().setText("");
-							principalView.errorMessages("Tokenization error:\n" + lexEx.getMessage());
-
-						}
-
-					} catch (IOException ex) {
-						ex.printStackTrace();
 					}
 
 					principalView.getBackgroundPanel().setVisible(false);
@@ -211,7 +199,7 @@ public class Controller {
 				}
 			}
 		};
-		
+
 		MouseListener back = new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -225,7 +213,7 @@ public class Controller {
 
 			}
 		};
-		
+
 		principalView.getExpressionIcon().addMouseListener(uploadParameters);
 		principalView.getUploadExpressionButton().addMouseListener(uploadSourceCodeListener);
 		principalView.getSourceCodeIcon().addMouseListener(uploadSourceCodeListener);
