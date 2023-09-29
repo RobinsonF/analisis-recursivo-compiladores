@@ -21,10 +21,10 @@ import javax.swing.Box;
 public class ShowPanel extends JPanel {
 
 	private JPanel backgroundPanel, menuPanel;
-	private JLabel titleLabel, iconLabel, expressionsLabel, sourceCodeLabel, outputLabel, backLabel, tokenizeAgainIcon,
-			tokenizeAgainLabel;
-	private TextAreaScroll expressionsScroll, sourceCodeScroll, outPutScroll;
-	private TextArea expressions, sourceCode, outPut;
+	private JLabel titleLabel, iconLabel, expressionsLabel, sourceCodeLabel, tokenizerOutputLabel, backLabel,
+			tokenizeAgainIcon, tokenizeAgainLabel, parserAgainIcon, parserAgainLabel, parserOutputLabel;
+	private TextAreaScroll expressionsScroll, sourceCodeScroll, tokenizerOutPutScroll, parserOutPutScroll;
+	private TextArea expressions, sourceCode, tokenizerOutPut, parserOutPut;
 
 	public ShowPanel() {
 
@@ -34,54 +34,54 @@ public class ShowPanel extends JPanel {
 
 		backgroundPanel = new JPanel();
 		backgroundPanel.setBackground(new Color(22, 22, 22));
-		backgroundPanel.setBounds(0, 0, 918, 512);
+		backgroundPanel.setBounds(0, 0, 1150, 512);
 		backgroundPanel.setLayout(null);
 		add(backgroundPanel);
 
 		menuPanel = new JPanel();
 		menuPanel.setBackground(new Color(23, 69, 23));
-		menuPanel.setBounds(0, 0, 902, 473);
+		menuPanel.setBounds(0, 0, 1150, 512);
 		menuPanel.setLayout(null);
 		backgroundPanel.add(menuPanel);
 
 		titleLabel = new JLabel("Tokenizer/Parser");
 		titleLabel.setForeground(new Color(255, 255, 255));
 		titleLabel.setFont(new Font("Roboto Thin", Font.PLAIN, 30));
-		titleLabel.setBounds(20, 38, 220, 57);
+		titleLabel.setBounds(48, 0, 220, 57);
 		menuPanel.add(titleLabel);
 
 		iconLabel = new JLabel("");
 		iconLabel.setIcon(
 				new ImageIcon(ShowPanel.class.getResource("/co/edu/unbosque/view/icons/regularExpressions.png")));
-		iconLabel.setBounds(248, 54, 38, 30);
+		iconLabel.setBounds(274, 11, 38, 30);
 		menuPanel.add(iconLabel);
 
 		expressionsLabel = new JLabel("Expressions:");
 		expressionsLabel.setForeground(Color.WHITE);
-		expressionsLabel.setFont(new Font("Roboto Thin", Font.PLAIN, 20));
-		expressionsLabel.setBounds(36, 72, 113, 76);
+		expressionsLabel.setFont(new Font("Roboto Thin", Font.PLAIN, 15));
+		expressionsLabel.setBounds(41, 48, 85, 20);
 		menuPanel.add(expressionsLabel);
 
 		sourceCodeLabel = new JLabel("Source code:");
 		sourceCodeLabel.setForeground(Color.WHITE);
-		sourceCodeLabel.setFont(new Font("Roboto Thin", Font.PLAIN, 20));
-		sourceCodeLabel.setBounds(338, 38, 113, 76);
+		sourceCodeLabel.setFont(new Font("Roboto Thin", Font.PLAIN, 15));
+		sourceCodeLabel.setBounds(41, 277, 92, 20);
 		menuPanel.add(sourceCodeLabel);
 
-		outputLabel = new JLabel("Output:");
-		outputLabel.setForeground(Color.WHITE);
-		outputLabel.setFont(new Font("Roboto Thin", Font.PLAIN, 20));
-		outputLabel.setBounds(382, 230, 69, 76);
-		menuPanel.add(outputLabel);
+		tokenizerOutputLabel = new JLabel("Tokenizer output:");
+		tokenizerOutputLabel.setForeground(Color.WHITE);
+		tokenizerOutputLabel.setFont(new Font("Roboto Thin", Font.PLAIN, 15));
+		tokenizerOutputLabel.setBounds(540, 0, 117, 30);
+		menuPanel.add(tokenizerOutputLabel);
 
 		backLabel = new JLabel("");
 		backLabel.setIcon(new ImageIcon(ShowPanel.class.getResource("/co/edu/unbosque/view/icons/back.png")));
-		backLabel.setBounds(10, 11, 24, 24);
+		backLabel.setBounds(10, 17, 24, 24);
 		backLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		menuPanel.add(backLabel);
 
 		expressionsScroll = new TextAreaScroll();
-		expressionsScroll.setBounds(35, 131, 264, 320);
+		expressionsScroll.setBounds(42, 79, 298, 193);
 		menuPanel.add(expressionsScroll);
 		expressionsScroll.setLabelText("Expressions:");
 		expressionsScroll.setFont(new Font("Roboto Thin", Font.PLAIN, 15));
@@ -92,7 +92,7 @@ public class ShowPanel extends JPanel {
 		expressionsScroll.setViewportView(expressions);
 
 		sourceCodeScroll = new TextAreaScroll();
-		sourceCodeScroll.setBounds(461, 11, 431, 217);
+		sourceCodeScroll.setBounds(42, 308, 298, 193);
 		menuPanel.add(sourceCodeScroll);
 		sourceCodeScroll.setLabelText("Source code:");
 		sourceCodeScroll.setFont(new Font("Roboto Thin", Font.PLAIN, 12));
@@ -102,46 +102,58 @@ public class ShowPanel extends JPanel {
 		sourceCode.setRows(5);
 		sourceCodeScroll.setViewportView(sourceCode);
 
-		outPutScroll = new TextAreaScroll();
-		outPutScroll.setBounds(461, 239, 431, 212);
-		menuPanel.add(outPutScroll);
-		outPutScroll.setLabelText("Output:");
-		outPutScroll.setFont(new Font("Roboto Thin", Font.PLAIN, 12));
-		outPut = new TextArea();
-		outPut.setFont(new Font("Roboto Thin", Font.PLAIN, 12));
-		outPut.setColumns(10);
-		outPut.setRows(5);
-		outPutScroll.setViewportView(outPut);
+		tokenizerOutPutScroll = new TextAreaScroll();
+		tokenizerOutPutScroll.setBounds(540, 31, 366, 217);
+		menuPanel.add(tokenizerOutPutScroll);
+		tokenizerOutPutScroll.setLabelText("Tokenize output:");
+		tokenizerOutPutScroll.setFont(new Font("Roboto Thin", Font.PLAIN, 12));
+		tokenizerOutPut = new TextArea();
+		tokenizerOutPut.setFont(new Font("Roboto Thin", Font.PLAIN, 12));
+		tokenizerOutPut.setColumns(10);
+		tokenizerOutPut.setRows(5);
+		tokenizerOutPutScroll.setViewportView(tokenizerOutPut);
 
 		tokenizeAgainIcon = new JLabel("");
 		tokenizeAgainIcon.setIcon(new ImageIcon(ShowPanel.class.getResource("/co/edu/unbosque/view/icons/start.png")));
-		tokenizeAgainIcon.setBounds(351, 317, 40, 40);
+		tokenizeAgainIcon.setBounds(438, 138, 40, 40);
 		tokenizeAgainIcon.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		menuPanel.add(tokenizeAgainIcon);
 
-		tokenizeAgainLabel = new JLabel("Tokenize & parse again");
+		tokenizeAgainLabel = new JLabel("Tokenize again");
 		tokenizeAgainLabel.setForeground(Color.WHITE);
 		tokenizeAgainLabel.setFont(new Font("Roboto Thin", Font.PLAIN, 14));
-		tokenizeAgainLabel.setBounds(309, 359, 142, 20);
+		tokenizeAgainLabel.setBounds(413, 189, 92, 20);
 		tokenizeAgainLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		menuPanel.add(tokenizeAgainLabel);
 
-	}
+		parserAgainIcon = new JLabel("");
+		parserAgainIcon.setIcon(new ImageIcon(ShowPanel.class.getResource("/co/edu/unbosque/view/icons/start.png")));
+		parserAgainIcon.setBounds(438, 367, 40, 40);
+		menuPanel.add(parserAgainIcon);
 
-	public JLabel getTokenizeAgainIcon() {
-		return tokenizeAgainIcon;
-	}
+		parserAgainLabel = new JLabel("Parser again");
+		parserAgainLabel.setForeground(Color.WHITE);
+		parserAgainLabel.setFont(new Font("Roboto Thin", Font.PLAIN, 14));
+		parserAgainLabel.setBounds(423, 418, 75, 20);
+		menuPanel.add(parserAgainLabel);
 
-	public void setTokenizeAgainIcon(JLabel tokenizeAgainIcon) {
-		this.tokenizeAgainIcon = tokenizeAgainIcon;
-	}
+		parserOutputLabel = new JLabel("Parser output:");
+		parserOutputLabel.setForeground(Color.WHITE);
+		parserOutputLabel.setFont(new Font("Roboto Thin", Font.PLAIN, 15));
+		parserOutputLabel.setBounds(540, 253, 117, 30);
+		menuPanel.add(parserOutputLabel);
 
-	public JLabel getTokenizeAgainLabel() {
-		return tokenizeAgainLabel;
-	}
+		parserOutPutScroll = new TextAreaScroll();
+		parserOutPutScroll.setLabelText("Parser output:");
+		parserOutPutScroll.setFont(new Font("Roboto Thin", Font.PLAIN, 12));
+		parserOutPutScroll.setBounds(540, 284, 366, 217);
+		menuPanel.add(parserOutPutScroll);
+		parserOutPut = new TextArea();
+		parserOutPut.setFont(new Font("Roboto Thin", Font.PLAIN, 12));
+		parserOutPut.setColumns(10);
+		parserOutPut.setRows(5);
+		parserOutPutScroll.setViewportView(parserOutPut);
 
-	public void setTokenizeAgainLabel(JLabel tokenizeAgainLabel) {
-		this.tokenizeAgainLabel = tokenizeAgainLabel;
 	}
 
 	public JPanel getBackgroundPanel() {
@@ -192,12 +204,12 @@ public class ShowPanel extends JPanel {
 		this.sourceCodeLabel = sourceCodeLabel;
 	}
 
-	public JLabel getOutputLabel() {
-		return outputLabel;
+	public JLabel getTokenizerOutputLabel() {
+		return tokenizerOutputLabel;
 	}
 
-	public void setOutputLabel(JLabel outputLabel) {
-		this.outputLabel = outputLabel;
+	public void setTokenizerOutputLabel(JLabel tokenizerOutputLabel) {
+		this.tokenizerOutputLabel = tokenizerOutputLabel;
 	}
 
 	public JLabel getBackLabel() {
@@ -206,6 +218,46 @@ public class ShowPanel extends JPanel {
 
 	public void setBackLabel(JLabel backLabel) {
 		this.backLabel = backLabel;
+	}
+
+	public JLabel getTokenizeAgainIcon() {
+		return tokenizeAgainIcon;
+	}
+
+	public void setTokenizeAgainIcon(JLabel tokenizeAgainIcon) {
+		this.tokenizeAgainIcon = tokenizeAgainIcon;
+	}
+
+	public JLabel getTokenizeAgainLabel() {
+		return tokenizeAgainLabel;
+	}
+
+	public void setTokenizeAgainLabel(JLabel tokenizeAgainLabel) {
+		this.tokenizeAgainLabel = tokenizeAgainLabel;
+	}
+
+	public JLabel getParserAgainIcon() {
+		return parserAgainIcon;
+	}
+
+	public void setParserAgainIcon(JLabel parserAgainIcon) {
+		this.parserAgainIcon = parserAgainIcon;
+	}
+
+	public JLabel getParserAgainLabel() {
+		return parserAgainLabel;
+	}
+
+	public void setParserAgainLabel(JLabel parserAgainLabel) {
+		this.parserAgainLabel = parserAgainLabel;
+	}
+
+	public JLabel getParserOutputLabel() {
+		return parserOutputLabel;
+	}
+
+	public void setParserOutputLabel(JLabel parserOutputLabel) {
+		this.parserOutputLabel = parserOutputLabel;
 	}
 
 	public TextAreaScroll getExpressionsScroll() {
@@ -224,12 +276,20 @@ public class ShowPanel extends JPanel {
 		this.sourceCodeScroll = sourceCodeScroll;
 	}
 
-	public TextAreaScroll getOutPutScroll() {
-		return outPutScroll;
+	public TextAreaScroll getTokenizerOutPutScroll() {
+		return tokenizerOutPutScroll;
 	}
 
-	public void setOutPutScroll(TextAreaScroll outPutScroll) {
-		this.outPutScroll = outPutScroll;
+	public void setTokenizerOutPutScroll(TextAreaScroll tokenizerOutPutScroll) {
+		this.tokenizerOutPutScroll = tokenizerOutPutScroll;
+	}
+
+	public TextAreaScroll getParserOutPutScroll() {
+		return parserOutPutScroll;
+	}
+
+	public void setParserOutPutScroll(TextAreaScroll parserOutPutScroll) {
+		this.parserOutPutScroll = parserOutPutScroll;
 	}
 
 	public TextArea getExpressions() {
@@ -248,11 +308,19 @@ public class ShowPanel extends JPanel {
 		this.sourceCode = sourceCode;
 	}
 
-	public TextArea getOutPut() {
-		return outPut;
+	public TextArea getTokenizerOutPut() {
+		return tokenizerOutPut;
 	}
 
-	public void setOutPut(TextArea outPut) {
-		this.outPut = outPut;
+	public void setTokenizerOutPut(TextArea tokenizerOutPut) {
+		this.tokenizerOutPut = tokenizerOutPut;
+	}
+
+	public TextArea getParserOutPut() {
+		return parserOutPut;
+	}
+
+	public void setParserOutPut(TextArea parserOutPut) {
+		this.parserOutPut = parserOutPut;
 	}
 }
